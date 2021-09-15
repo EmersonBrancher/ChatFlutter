@@ -2,22 +2,50 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'chat_screen.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(App());
+  runApp(MyApp());
 }
 
-class App extends StatefulWidget {
+/*class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Chat Flutter',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        iconTheme: IconThemeData(color: Colors.blue),
+      ),
+      home: ChatScreen(),
+    );
+  }
+}*/
+
+
+
+class MyApp extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends State<MyApp> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return MaterialApp(
+      title: 'Chat Flutter',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        iconTheme: IconThemeData(color: Colors.blue),
+      ),
+      home: ChatScreen(),
+    );
+    /*FutureBuilder(
       // Initialize FlutterFire:
       future: _initialization,
       builder: (context, snapshot) {
@@ -39,6 +67,6 @@ class _AppState extends State<App> {
           child: Text("Erro"),
         );
       },
-    );
+    );  */
   }
 }
