@@ -15,6 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _AppState extends State<MyApp> {
+
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
