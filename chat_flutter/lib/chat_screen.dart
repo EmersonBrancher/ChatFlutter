@@ -1,4 +1,4 @@
-import 'dart:io';
+
 
 import 'package:chat_flutter/text_composer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:image_picker/image_picker.dart';
+
+import 'chat_message.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -99,15 +100,14 @@ class _ChatScreenState extends State<ChatScreen> {
                           child: CircularProgressIndicator(),
                         );
                       default:
-                        List<QueryDocumentSnapshot> documents = snapshot.data!.docs.reversed.toList();
+                        List<QueryDocumentSnapshot> documents =
+                          snapshot.data!.docs.reversed.toList();
 
                         return ListView.builder(
                           itemCount: documents.length,
                           reverse: true,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(documents[index].get('text')),
-                            );
+                            return ChatMessage(documents[index].data() as Map<String, dynamic>, true);
                           }
                         );
                     }
